@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Advanced File Manager for Laravel | Easy File Management Solution</title>
+    <meta name="description" content="A powerful Laravel file manager package with drag & drop uploads, multiple storage support, access control, and file operations. Open-source and easy to integrate.">
+    <meta name="keywords" content="laravel file manager, file upload, drag and drop, file management system, laravel package">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-domain.com">
+    <meta property="og:title" content="Advanced File Manager for Laravel">
+    <meta property="og:description" content="Professional file management solution for Laravel applications with drag & drop support, multiple storage options, and powerful features.">
+    <meta property="og:image" content="https://your-domain.com/path/to/og-image.jpg">
+    <meta property="og:image:alt" content="Advanced File Manager Interface Screenshot">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Advanced File Manager for Laravel">
+    <meta name="twitter:description" content="Professional file management solution for Laravel applications with drag & drop support.">
+    <meta name="twitter:image" content="https://your-domain.com/path/to/twitter-image.jpg">
+    <meta name="twitter:image:alt" content="Advanced File Manager Interface Screenshot">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://your-domain.com">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Advanced File Manager",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Laravel",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "description": "A professional file management solution for Laravel applications with drag & drop uploads, multiple storage support, and powerful features.",
+        "softwareVersion": "1.0.0",
+        "author": {
+            "@type": "Person",
+            "name": "Rabiul Islam"
+        }
+    }
+    </script>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg sticky-top" aria-label="Main navigation">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html" aria-label="AFManager Home">
+                <svg height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" role="img">
+                    <path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/>
+                </svg>
+                <span class="ms-3 fw-bold">AFManager</span>
+            </a>
+            <div class="search-wrapper d-none d-lg-flex mx-lg-4">
+                <div class="search-box" role="search">
+                    <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" role="img">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input type="text" class="search-input" placeholder="Search features..." aria-label="Search features">
+                    <div class="search-shortcut" aria-hidden="true">⌘K</div>
+                </div>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="docs.html">Documentation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="#installation">Installation</a>
+                    </li>
+                    <li class="nav-item ms-2">
+                        <a href="https://github.com/devrabiul/advanced-file-manager" class="nav-link github-icon" aria-label="Visit GitHub Repository">
+                            <svg width="24" height="24" fill="currentColor" aria-hidden="true" role="img">
+                                <path d="M12 2C6.477 2 2 6.463 2 11.97c0 4.404 2.865 8.14 6.839 9.458.5.092.682-.216.682-.48 0-.236-.008-.864-.013-1.695-2.782.602-3.369-1.337-3.369-1.337-.454-1.151-1.11-1.458-1.11-1.458-.908-.618.069-.606.069-.606 1.003.07 1.531 1.027 1.531 1.027.892 1.524 2.341 1.084 2.91.828.092-.643.35-1.083.636-1.332-2.22-.251-4.555-1.107-4.555-4.927 0-1.088.39-1.979 1.029-2.675-.103-.252-.446-1.266.098-2.638 0 0 .84-.268 2.75 1.022A9.607 9.607 0 0 1 12 6.82c.85.004 1.705.114 2.504.336 1.909-1.29 2.747-1.022 2.747-1.022.546 1.372.203 2.386.1 2.638.64.696 1.028 1.587 1.028 2.675 0 3.83-2.339 4.673-4.566 4.92.359.307.678.915.678 1.846 0 1.332-.012 2.407-.012 2.734 0 .267.18.577.688.48 3.97-1.32 6.833-5.054 6.833-9.458C22 6.463 17.522 2 12 2Z"/>
+                            </svg>
+                            <span class="visually-hidden">GitHub</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="gradient-circle"></div>
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Preview Window (will show first on mobile) -->
+                <div class="col-lg-6 order-1 order-lg-2 mb-3 mb-lg-0">
+                    <div class="preview-window-container">
+                        <div class="preview-window">
+                            <div class="preview-header">
+                                <div class="preview-dots">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
+                            <div class="preview-body">
+                                <img src="advanced-file-manager.png" alt="File Manager Preview" class="img-fluid rounded-3">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text Content (will show second on mobile) -->
+                <div class="col-lg-6 order-2 order-lg-1">
+                    <span class="badge bg-success text-white">Laravel Package</span>
+                    <h1 class="hero-title display-4 fw-bold mb-4">
+                        Advanced File Manager for Laravel Applications
+                    </h1>
+                    <p class="fs-6 text-secondary mb-4">
+                        A powerful and user-friendly file management solution for Laravel applications. Features drag & drop uploads, multiple storage support, file operations, access control, and a beautiful interface - everything you need for professional file management.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-md-start">
+                        <a href="#installation" class="btn btn-primary btn-lg get-started-btn" aria-label="Install Advanced File Manager">
+                            <div class="d-flex align-items-center justify-content-center">
+                                <div class="btn-content">
+                                    <span class="btn-label">Ready to Start</span>
+                                    <span class="btn-text">Install Now</span>
+                                </div>
+                                <div class="btn-icon-group">
+                                    <svg class="btn-icon rocket" width="24" height="24" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" role="img">
+                                        <path d="M12.14 2.25c.585 0 1.272.145 1.862.435 1.077.528 2.757 1.718 4.118 3.079 1.362 1.361 2.552 3.041 3.08 4.118.29.59.434 1.277.434 1.862 0 .585-.145 1.272-.435 1.862-.528 1.077-1.718 2.757-3.079 4.118-1.361 1.362-3.041 2.552-4.118 3.08-.59.29-1.277.434-1.862.434-.585 0-1.272-.145-1.862-.435-1.077-.528-2.757-1.718-4.118-3.079-1.361-1.361-2.552-3.041-3.08-4.118-.29-.59-.434-1.277-.434-1.862 0-.585.145-1.272.435-1.862.528-1.077 1.718-2.757 3.079-4.118 1.361-1.362 3.041-2.552 4.118-3.08.59-.29 1.277-.434 1.862-.434zM9.97 8.97a1 1 0 00-1.414 1.414l4.95 4.95a1 1 0 001.414-1.414l-4.95-4.95z"/>
+                                    </svg>
+                                    <svg class="btn-icon arrow" width="20" height="20" fill="currentColor" aria-hidden="true" role="img">
+                                        <path d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </a>
+                        <button type="button" class="btn btn-danger btn-lg rounded-pill shadow position-relative" data-bs-toggle="modal" data-bs-target="#videoDemoModal">
+                            <svg class="btn-icon me-2" width="28" height="28" fill="currentColor" aria-hidden="true" role="img">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                            <span class="fw-bold">Watch Video Demo</span>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-light text-white">New</span>
+                        </button>
+                    </div>
+                    <div class="stats-container pt-4 d-flex gap-5">
+                        <div class="stat-item">
+                            <svg width="20" height="20" fill="currentColor" class="me-2" aria-hidden="true" role="img">
+                                <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/>
+                            </svg>
+                            <span>Open Source</span>
+                        </div>
+                        <div class="stat-item">
+                            <svg width="20" height="20" fill="currentColor" class="me-2" aria-hidden="true" role="img">
+                                <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Zm4.879-2.773 4.264 2.559a.25.25 0 0 1 0 .428l-4.264 2.559A.25.25 0 0 1 6 10.559V5.442a.25.25 0 0 1 .379-.215Z"/>
+                            </svg>
+                            <span>Laravel 12.x Support</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="features-section" aria-labelledby="features-title"  id="features">
+        <div class="container">
+            <h2 id="features-title" class="section-title text-center">Powerful File Management Features</h2>
+            <div class="text-center mb-5">
+                <p class="text-secondary">Everything you need for efficient file management in Laravel</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon mb-4">
+                            <svg width="32" height="32" fill="currentColor" aria-hidden="true" role="img">
+                                <path d="M16 2C8.648 2 2.5 8.148 2.5 15.5c0 5.523 3.582 10.206 8.549 11.823.625.115.852-.27.852-.6 0-.236-.008-.864-.013-1.695-2.782.602-3.369-1.337-3.369-1.337-.454-1.151-1.11-1.458-1.11-1.458-.908-.618.069-.606.069-.606 1.003.07 1.531 1.027 1.531 1.027.892 1.524 2.341 1.084 2.91.828.092-.643.35-1.083.636-1.332-2.22-.251-4.555-1.107-4.555-4.927 0-1.088.39-1.979 1.029-2.675-.103-.252-.446-1.266.098-2.638 0 0 .84-.268 2.75 1.022A9.607 9.607 0 0 1 12 6.82c.85.004 1.705.114 2.504.336 1.909-1.29 2.747-1.022 2.747-1.022.546 1.372.203 2.386.1 2.638.64.696 1.028 1.587 1.028 2.675 0 3.83-2.339 4.673-4.566 4.92.359.307.678.915.678 1.846 0 1.332-.012 2.407-.012 2.734 0 .267.18.577.688.48 3.97-1.32 6.833-5.054 6.833-9.458C22 6.463 17.522 2 12 2Z"/>
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Easy Integration</h3>
+                        <p class="feature-text">Simple installation via Composer and seamless integration with Laravel projects.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon mb-4">
+                            <svg width="32" height="32" fill="currentColor" aria-hidden="true" role="img">
+                                <path d="M15 2C8.925 2 4 6.925 4 13c0 4.66 2.875 8.638 6.94 10.267.507.093.697-.22.697-.49 0-.242-.01-1.04-.015-1.882-2.832.616-3.431-1.166-3.431-1.166-.463-.985-1.13-1.246-1.13-1.246-.924-.63.07-.617.07-.617 1.022.072 1.56 1.05 1.56 1.05.907 1.55 2.379 1.1 2.958.842.092-.656.354-1.1.645-1.355-2.262-.257-4.64-1.13-4.64-5.03 0-1.11.398-2.02 1.05-2.73-.105-.258-.455-1.294.1-2.695 0 0 .855-.273 2.802 1.044.812-.226 1.684-.34 2.552-.344.868.004 1.74.118 2.552.344 1.947-1.317 2.802-1.044 2.802-1.044.555 1.4.205 2.437.1 2.695.652.71 1.05 1.62 1.05 2.73 0 3.91-2.385 4.77-4.653 5.022.366.314.693.935.693 1.882 0 1.358-.012 2.454-.012 2.788 0 .267.18.587.7.488C23.13 21.633 26 17.657 26 13c0-6.075-4.925-11-11-11z"/>
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Multiple Storage Support</h3>
+                        <p class="feature-text">Support for multiple storage disks with customizable disk settings and configurations.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon mb-4">
+                            <svg width="32" height="32" fill="currentColor" aria-hidden="true" role="img">
+                                <path d="M2 6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6Z"/>
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Drag & Drop Upload</h3>
+                        <p class="feature-text">Intuitive drag and drop interface with progress tracking and multiple file upload support.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add second row of features -->
+            <div class="row g-4 mt-4">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon mb-4">
+                            <svg width="32" height="32" fill="currentColor" aria-hidden="true" role="img">
+                                <path d="M16 4c6.627 0 12 5.373 12 12s-5.373 12-12 12S4 22.627 4 16 9.373 4 16 4zm0 2C10.477 6 6 10.477 6 16s4.477 10 10 10 10-4.477 10-10S21.523 6 16 6zm0 4a2 2 0 011.664 3.11l1.664 3.89h-1.312l-1.48-3.465A2.001 2.001 0 0116 10zm0 1a1 1 0 100 2 1 1 0 000-2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Access Control</h3>
+                        <p class="feature-text">Built-in file access permissions and user authentication integration for secure file management.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon mb-4">
+                            <svg width="32" height="32" fill="currentColor" aria-hidden="true" role="img">
+                                <path d="M24 12l-5.657-5.657-2.121 2.121L21.879 14l-5.657 5.657 2.121 2.121L24 16l2.121-2.121L24 12zM8 12l5.657-5.657 2.121 2.121L10.121 14l5.657 5.657-2.121 2.121L8 16l-2.121-2.121L8 12z"/>
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">File Operations</h3>
+                        <p class="feature-text">Complete file operations including copy, cut, paste, rename, and soft delete with trash management.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon mb-4">
+                            <svg width="32" height="32" fill="currentColor" aria-hidden="true" role="img">
+                                <path d="M16 2C8.268 2 2 8.268 2 16s6.268 14 14 14 14-6.268 14-14S23.732 2 16 2zm0 25.5C9.096 27.5 3.5 21.904 3.5 15S9.096 2.5 16 2.5 28.5 8.096 28.5 15 22.904 27.5 16 27.5zm-.5-20v11.5H22v2h-8V7.5h1.5z"/>
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Event System</h3>
+                        <p class="feature-text">Comprehensive event system for file uploads, deletions, moves, and other operations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Update Installation Section -->
+    <section class="installation-section py-5" id="installation">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="badge-outline mb-3">Installation</span>
+                <h2 class="section-title">Quick Installation</h2>
+                <p class="text-secondary">Get started in minutes with these simple steps</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="setup-steps">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <div class="step-header">
+                                    <h3 class="h4">Install via Composer</h3>
+                                    <span class="step-badge">Required</span>
+                                </div>
+                                <div class="code-block">
+                                    <div class="code-label">Run in terminal</div>
+                                    <button class="copy-btn" data-clipboard-text="composer require devrabiul/advanced-file-manager" aria-label="Copy composer command">
+                                        <svg width="16" height="16" fill="currentColor" aria-hidden="true" role="img">
+                                            <path d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1H2z"/>
+                                        </svg>
+                                    </button>
+                                    <code>composer require devrabiul/advanced-file-manager</code>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <div class="step-header">
+                                    <h3 class="h4">Publish Resources</h3>
+                                    <span class="step-badge">Required</span>
+                                </div>
+                                <div class="code-block">
+                                    <div class="code-label">Run in terminal</div>
+                                    <button class="copy-btn" data-clipboard-text="php artisan vendor:publish --provider=&quot;Devrabiul\AdvancedFileManager\AdvancedFileManagerServiceProvider&quot;" aria-label="Copy publish command">
+                                        <svg width="16" height="16" fill="currentColor" aria-hidden="true" role="img">
+                                            <path d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1H2z"/>
+                                        </svg>
+                                    </button>
+                                    <code>php artisan vendor:publish --provider="Devrabiul\AdvancedFileManager\AdvancedFileManagerServiceProvider"</code>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <div class="step-header">
+                                    <h3 class="h4">Run Migrations</h3>
+                                    <span class="step-badge">Required</span>
+                                </div>
+                                <div class="code-block">
+                                    <div class="code-label">Run in terminal</div>
+                                    <button class="copy-btn" data-clipboard-text="php artisan migrate" aria-label="Copy migration command">
+                                        <svg width="16" height="16" fill="currentColor" aria-hidden="true" role="img">
+                                            <path d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1H2z"/>
+                                        </svg>
+                                    </button>
+                                    <code>php artisan migrate</code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add Next Steps Card -->
+                    <div class="next-steps-card mt-4">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <svg width="24" height="24" fill="currentColor" aria-hidden="true" role="img">
+                                <path d="M9.172 16.242 12 13.414l2.828 2.828 1.414-1.414L13.414 12l2.828-2.828-1.414-1.414L12 10.586 9.172 7.758 7.758 9.172 10.586 12l-2.828 2.828z"/>
+                                <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm0-18c4.411 0 8 3.589 8 8s-3.589 8-8 8-8-3.589-8-8 3.589-8 8-8z"/>
+                            </svg>
+                            <h4 class="mb-0">What's Next?</h4>
+                        </div>
+                        <p class="text-secondary mb-3">After installation, check out our documentation to learn how to:</p>
+                        <div class="next-steps-list">
+                            <a href="/docs#configuration" class="next-step-link">Configure storage settings</a>
+                            <a href="/docs#usage" class="next-step-link">Implement file manager UI</a>
+                            <a href="/docs#permissions" class="next-step-link">Set up access control</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add a new section for detailed features -->
+    <section class="detailed-features py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Comprehensive Features</h2>
+                <p class="text-secondary">Discover all the powerful capabilities of Advanced File Manager</p>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="feature-header">
+                        <h3>File Operations</h3>
+                        <span class="feature-badge">Core Feature</span>
+                    </div>
+                    <ul class="feature-list">
+                        <li>Create, rename, and delete files/folders</li>
+                        <li>Copy, cut, and paste operations</li>
+                        <li>Drag and drop file organization</li>
+                        <li>File preview and download</li>
+                        <li>Bulk file operations</li>
+                    </ul>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-header">
+                        <h3>Upload System</h3>
+                        <span class="feature-badge">Enhanced</span>
+                    </div>
+                    <ul class="feature-list">
+                        <li>Drag & drop file uploads</li>
+                        <li>Upload progress tracking</li>
+                        <li>File type restrictions</li>
+                        <li>Size limit validation</li>
+                        <li>Multiple file upload</li>
+                    </ul>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-header">
+                        <h3>Storage Management</h3>
+                        <span class="feature-badge">Advanced</span>
+                    </div>
+                    <ul class="feature-list">
+                        <li>Multiple disk support (local/cloud)</li>
+                        <li>Custom disk configuration</li>
+                        <li>Directory structure management</li>
+                        <li>File organization tools</li>
+                        <li>Storage space monitoring</li>
+                    </ul>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-header">
+                        <h3>Integration</h3>
+                        <span class="feature-badge">Laravel</span>
+                    </div>
+                    <ul class="feature-list">
+                        <li>Easy Laravel integration</li>
+                        <li>Blade components included</li>
+                        <li>Event system support</li>
+                        <li>Configurable middleware</li>
+                        <li>Extensible architecture</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Update the FAQ section -->
+    <section class="faq-section py-5" aria-labelledby="faq-title">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="badge-outline mb-3">FAQ</span>
+                <h2 id="faq-title" class="section-title">Frequently Asked Questions</h2>
+                <p class="text-secondary">Everything you need to know about Advanced File Manager</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="accordion custom-accordion" id="faqAccordion">
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    <div class="d-flex align-items-center gap-3 w-100">
+                                        <span class="faq-badge general">General</span>
+                                        <span>What is Advanced File Manager?</span>
+                                    </div>
+                                </button>
+                            </h3>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Advanced File Manager is a comprehensive Laravel package that provides professional file management capabilities. It includes features like drag & drop uploads, multiple storage support, access control, and advanced file operations, making it perfect for both simple and complex file management needs.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    <div class="d-flex align-items-center gap-3 w-100">
+                                        <span class="faq-badge technical">Technical</span>
+                                        <span>Which Laravel versions are supported?</span>
+                                    </div>
+                                </button>
+                            </h3>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Advanced File Manager supports Laravel 8.x and above, including the latest Laravel 10.x version. We regularly update the package to ensure compatibility with new Laravel releases and maintain backward compatibility where possible.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                    <div class="d-flex align-items-center gap-3 w-100">
+                                        <span class="faq-badge technical">Technical</span>
+                                        <span>How do I customize the storage configuration?</span>
+                                    </div>
+                                </button>
+                            </h3>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    You can customize storage settings in the <code>config/advanced-file-manager.php</code> file. This includes configuring multiple disks, setting upload limits, defining allowed file types, and specifying storage paths. The package supports all Laravel filesystem drivers including local, S3, and other cloud storage services.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                    <div class="d-flex align-items-center gap-3 w-100">
+                                        <span class="faq-badge general">General</span>
+                                        <span>Can I integrate it with my existing Laravel application?</span>
+                                    </div>
+                                </button>
+                            </h3>
+                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes! Advanced File Manager is designed to be easily integrated into existing Laravel applications. Simply install via Composer, publish the assets, and you're ready to go. The package provides Blade components and events that you can hook into your existing application logic.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                    <div class="d-flex align-items-center gap-3 w-100">
+                                        <span class="faq-badge general">General</span>
+                                        <span>How does the access control system work?</span>
+                                    </div>
+                                </button>
+                            </h3>
+                            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    The package includes a flexible permission system that integrates with Laravel's authentication. You can define user roles, set file/folder permissions, and control access at both the individual and group levels. It's also compatible with popular Laravel permission packages like Spatie's Permission.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                                    <div class="d-flex align-items-center gap-3 w-100">
+                                        <span class="faq-badge general">General</span>
+                                        <span>Is technical support available?</span>
+                                    </div>
+                                </button>
+                            </h3>
+                            <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes, we provide support through GitHub issues and discussions. The package is actively maintained, and we welcome bug reports, feature requests, and contributions from the community. Premium support options are also available for enterprise users.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add help section -->
+                    <div class="faq-help-box mt-5">
+                        <div class="d-flex align-items-center gap-4">
+                            <div class="help-icon">
+                                <svg width="24" height="24" fill="currentColor">
+                                    <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 16h-2v-2h2v2zm0-4h-2V7h2v7z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>Still have questions?</h4>
+                                <p class="mb-0">Can't find the answer you're looking for? Please chat with our friendly team.</p>
+                            </div>
+                            <a href="https://github.com/devrabiul/advanced-file-manager/discussions" class="btn btn-outline-primary ms-auto">
+                                Get Help
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add Support Section -->
+    <section class="support-section py-5 text-center">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="badge-outline mb-3">Support</span>
+                <h2 class="section-title">Support the Development</h2>
+                <p class="text-secondary">Help keep Advanced File Manager free and actively maintained</p>
+            </div>
+            <div class="row justify-content-center g-4">
+                <div class="col-md-4">
+                    <div class="support-card">
+                        <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="48" class="mb-3">
+                        <h3 class="h5 mb-3">Buy Me A Coffee</h3>
+                        <p class="text-secondary mb-3">Support with a one-time donation</p>
+                        <a href="https://www.buymeacoffee.com/devrabiul" class="btn btn-outline-primary" target="_blank">
+                            Buy me a coffee
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="support-card">
+                        <svg height="48" viewBox="0 0 24 24" fill="#bf3989" class="mb-3">
+                            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-1.882-2.832.616-3.369-1.337-3.369-1.337-.454-1.151-1.11-1.458-1.11-1.458-.908-.618.069-.606.069-.606 1.022.07 1.531 1.027 1.531 1.027.892 1.524 2.341 1.084 2.91.828.092-.643.35-1.083.636-1.332-2.22-.251-4.555-1.107-4.555-4.927 0-1.088.39-1.979 1.029-2.675-.103-.252-.446-1.266.098-2.638 0 0 .84-.268 2.75 1.022A9.607 9.607 0 0 1 12 6.82c.85.004 1.705.114 2.504.336 1.909-1.29 2.747-1.022 2.747-1.022.546 1.372.203 2.386.1 2.638.64.696 1.028 1.587 1.028 2.675 0 3.83-2.339 4.673-4.566 4.92.359.307.678.915.678 1.846 0 1.332-.012 2.407-.012 2.734 0 .267.18.577.688.48 3.97-1.32 6.833-5.054 6.833-9.458C22 6.463 17.522 2 12 2z"/>
+                        </svg>
+                        <h3 class="h5 mb-3">GitHub Sponsors</h3>
+                        <p class="text-secondary mb-3">Support with monthly sponsorship</p>
+                        <a href="https://github.com/sponsors/devrabiul" class="btn btn-outline-primary" target="_blank">
+                            Sponsor on GitHub
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="support-card">
+                        <img src="https://storage.ko-fi.com/cdn/kofi_stroke_cup.svg" alt="Ko-fi" height="48" class="mb-3">
+                        <h3 class="h5 mb-3">Ko-fi</h3>
+                        <p class="text-secondary mb-3">Support with a quick donation</p>
+                        <a href="https://ko-fi.com/devrabiul" class="btn btn-outline-primary" target="_blank">
+                            Support on Ko-fi
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-5">
+                <p class="text-secondary">Your support helps maintain and improve Advanced File Manager ❤️</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Demo Modal -->
+    <div class="modal fade" id="videoDemoModal" tabindex="-1" aria-labelledby="videoDemoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content rounded-3 shadow-lg">
+                <div class="modal-header border-bottom-0">
+                    <h5 class="modal-title" id="videoDemoModalLabel">Watch Our Video Demo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/ghpz3Q_dp-g" title="Video Demo" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer-section" role="contentinfo">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-brand mb-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <svg height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/>
+                            </svg>
+                            <span class="ms-2 fw-bold text-white">Advanced File Manager</span>
+                        </div>
+                        <p class="text-secondary mb-4">Professional File Management for Laravel</p>
+                        <div class="social-links d-flex gap-3">
+                            <a href="https://github.com/devrabiul/advanced-file-manager" class="social-link" target="_blank">
+                                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.477 2 2 6.463 2 11.97c0 4.404 2.865 8.14 6.839 9.458.5.092.682-.216.682-.48 0-.236-.008-.864-.013-1.695-2.782.602-3.369-1.337-3.369-1.337-.454-1.151-1.11-1.458-1.11-1.458-.908-.618.069-.606.069-.606 1.003.07 1.531 1.027 1.531 1.027.892 1.524 2.341 1.084 2.91.828.092-.643.35-1.083.636-1.332-2.22-.251-4.555-1.107-4.555-4.927 0-1.088.39-1.979 1.029-2.675-.103-.252-.446-1.266.098-2.638 0 0 .84-.268 2.75 1.022A9.607 9.607 0 0 1 12 6.82c.85.004 1.705.114 2.504.336 1.909-1.29 2.747-1.022 2.747-1.022.546 1.372.203 2.386.1 2.638.64.696 1.028 1.587 1.028 2.675 0 3.83-2.339 4.673-4.566 4.92.359.307.678.915.678 1.846 0 1.332-.012 2.407-.012 2.734 0 .267.18.577.688.48 3.97-1.32 6.833-5.054 6.833-9.458C22 6.463 17.522 2 12 2z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-2">
+                    <h4 class="footer-title">Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="/docs">Documentation</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#installation">Installation</a></li>
+                        <li><a href="https://github.com/devrabiul/advanced-file-manager/issues">Support</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-2">
+                    <h4 class="footer-title">Community</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://github.com/devrabiul/advanced-file-manager">GitHub</a></li>
+                        <li><a href="https://github.com/devrabiul/advanced-file-manager/discussions">Discussions</a></li>
+                        <li><a href="https://github.com/devrabiul/advanced-file-manager/blob/main/CONTRIBUTING.md">Contributing</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-4">
+                    <h4 class="footer-title">About</h4>
+                    <p class="text-secondary">Advanced File Manager is an open-source Laravel package that provides a complete solution for file management in your applications.</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container py-3">
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                    <p class="mb-0 text-secondary">© 2025 Advanced File Manager. All rights reserved.</p>
+                    <div class="d-flex align-items-center gap-4">
+                    
+                        <div class="tech-links d-flex gap-3">
+                            <a href="https://packagist.org/packages/devrabiul/advanced-file-manager" class="tech-link" target="_blank" title="Packagist">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0L1.605 6v12L12 24l10.395-6V6L12 0zm6 16.59c0 .705-.646 1.29-1.529 1.29-.631 0-1.351-.255-1.801-.81l-2.968-3.63v3.54c0 .477-.436.87-.97.87H8.87c-.534 0-.97-.393-.97-.87V10.02c0-.476.436-.87.97-.87v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1H2z"/>
+                                </svg>
+                            </a>
+                            <a href="https://github.com/devrabiul/advanced-file-manager" class="tech-link" target="_blank" title="GitHub">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2C6.477 2 2 6.463 2 11.97c0 4.404 2.865 8.14 6.839 9.458.5.092.682-.216.682-.48 0-.236-.008-.864-.013-1.695-2.782.602-3.369-1.337-3.369-1.337-.454-1.151-1.11-1.458-1.11-1.458-.908-.618.069-.606.069-.606 1.003.07 1.531 1.027 1.531 1.027.892 1.524 2.341 1.084 2.91.828.092-.643.35-1.083.636-1.332-2.22-.251-4.555-1.107-4.555-4.927 0-1.088.39-1.979 1.029-2.675-.103-.252-.446-1.266.098-2.638 0 0 .84-.268 2.75 1.022A9.607 9.607 0 0 1 12 6.82c.85.004 1.705.114 2.504.336 1.909-1.29 2.747-1.022 2.747-1.022.546 1.372.203 2.386.1 2.638.64.696 1.028 1.587 1.028 2.675 0 3.83-2.339 4.673-4.566 4.92.359.307.678.915.678 1.846 0 1.332-.012 2.407-.012 2.734 0 .267.18.577.688.48 3.97-1.32 6.833-5.054 6.833-9.458C22 6.463 17.522 2 12 2z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script>
+        // Initialize clipboard.js
+        const clipboard = new ClipboardJS('.copy-btn');
+        
+        clipboard.on('success', function(e) {
+            const btn = e.trigger;
+            btn.classList.add('copied');
+            
+            // Change icon to checkmark
+            btn.innerHTML = '<svg width="16" height="16" fill="currentColor"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>';
+            
+            // Reset after 2 seconds
+            setTimeout(() => {
+                btn.classList.remove('copied');
+                btn.innerHTML = '<svg width="16" height="16" fill="currentColor"><path d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1H2z"/></svg>';
+            }, 2000);
+            
+            e.clearSelection();
+        });
+    </script>
+</body>
+</html>

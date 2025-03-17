@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation | Advanced File Manager for Laravel</title>
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="Documentation for Advanced File Manager - A powerful Laravel file management package">
+    
+    <!-- Styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="docs.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="docs-body">
+    <div class="container">
+        <div class="layout">
+            <!-- Header -->
+            <header class="header">
+                <div class="container-fluid">
+                    <div class="header-content">
+                        <div class="header-start">
+                            <button class="menu-toggle d-lg-none" id="menuToggle" aria-label="Toggle Menu">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 6h16M4 12h16M4 18h16"/>
+                                </svg>
+                            </button>
+                            <a href="index.html" class="brand">
+                                <div class="brand-logo">
+                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/>
+                                    </svg>
+                                </div>
+                                <div class="brand-content">
+                                    <span class="brand-name">AFManager</span>
+                                    <span class="brand-version">v1.0.0</span>
+                                </div>
+                            </a>
+                        </div>
+    
+                        <div class="header-center">
+                            <div class="search-container">
+                                <div class="search-box">
+                                    <svg class="search-icon" width="20" height="20" fill="none" stroke="currentColor">
+                                        <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-width="2"/>
+                                    </svg>
+                                    <input type="text" class="search-input" placeholder="Search documentation..." aria-label="Search documentation">
+                                    <div class="search-shortcut" aria-hidden="true">
+                                        <kbd>⌘</kbd><kbd>K</kbd>
+                                    </div>
+                                </div>
+                                <div class="search-results" id="searchResults" hidden>
+                                    <!-- Search results will be populated here -->
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="header-end">
+                            <div class="header-actions">
+                                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                                    <svg class="sun-icon" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                                    </svg>
+                                    <svg class="moon-icon" width="24" height="24" fill="currentColor">
+                                        <path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                                    </svg>
+                                </button>
+                                <a href="https://github.com/devrabiul/advanced-file-manager" class="github-link" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
+                                    <svg width="24" height="24" fill="currentColor">
+                                        <path d="M12 2C6.477 2 2 6.463 2 11.97c0 4.404 2.865 8.14 6.839 9.458.5.092.682-.216.682-.48 0-.236-.008-.864-.013-1.695-2.782.602-3.369-1.337-3.369-1.337-.454-1.151-1.11-1.458-1.11-1.458-.908-.618.069-.606.069-.606 1.003.07 1.531 1.027 1.531 1.027.892 1.524 2.341 1.084 2.91.828.092-.643.35-1.083.636-1.332-2.22-.251-4.555-1.107-4.555-4.927 0-1.088.39-1.979 1.029-2.675-.103-.252-.446-1.266.098-2.638 0 0 .84-.268 2.75 1.022A9.607 9.607 0 0112 6.82c.85.004 1.705.114 2.504.336 1.909-1.29 2.747-1.022 2.747-1.022.546 1.372.203 2.386.1 2.638.64.696 1.028 1.587 1.028 2.675 0 3.83-2.339 4.673-4.566 4.92.359.307.678.915.678 1.846 0 1.332-.012 2.407-.012 2.734 0 .267.18.577.688.48C19.137 20.107 22 16.373 22 11.969 22 6.463 17.522 2 12 2z"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+    
+            <!-- Main Container -->
+            <div class="docs-container">
+                <!-- Sidebar -->
+                <aside class="sidebar" id="sidebar">
+                    <div class="sidebar-content">
+                        <div class="version-select mb-4">
+                            <select class="form-select form-select-sm">
+                                <option>v1.0.0</option>
+                            </select>
+                        </div>
+    
+                        <nav class="sidebar-nav">
+                            <div class="nav-group">
+                                <h5 class="nav-group-title">Getting Started</h5>
+                                <ul class="nav-items">
+                                    <li class="nav-item">
+                                        <a href="#introduction" class="nav-link active">Introduction</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#installation" class="nav-link">Installation</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#configuration" class="nav-link">Configuration</a>
+                                    </li>
+                                </ul>
+                            </div>
+    
+                            <div class="nav-group">
+                                <h5 class="nav-group-title">Basic Usage</h5>
+                                <ul class="nav-items">
+                                    <li class="nav-item">
+                                        <a href="#basic-setup" class="nav-link">Basic Setup</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#file-operations" class="nav-link">File Operations</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#folder-management" class="nav-link">Folder Management</a>
+                                    </li>
+                                </ul>
+                            </div>
+    
+                            <div class="nav-group">
+                                <h5 class="nav-group-title">Advanced Features</h5>
+                                <ul class="nav-items">
+                                    <li class="nav-item">
+                                        <a href="#access-control" class="nav-link">Access Control</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#events" class="nav-link">Events & Hooks</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#customization" class="nav-link">Customization</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </aside>
+    
+                <!-- Main Content -->
+                <main class="main-content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12 col-lg-9">
+                                <article class="content pt-5 pe-lg-5">
+                                    <section id="introduction">
+                                        <h1>Introduction</h1>
+                                        <p>Advanced File Manager is a powerful Laravel package that provides a complete solution for file management in your applications. It offers an intuitive interface, robust features, and seamless integration with Laravel's filesystem.</p>
+                                        
+                                        <div class="features-grid mt-5">
+                                            <div class="feature-card">
+                                                <div class="feature-icon">
+                                                    <svg width="24" height="24" fill="currentColor">
+                                                        <path d="M7 16.5v-9l7 4.5-7 4.5z"/>
+                                                    </svg>
+                                                </div>
+                                                <h3>Easy Integration</h3>
+                                                <p>Simple installation process and seamless integration with Laravel applications.</p>
+                                            </div>
+                                            <!-- Add more feature cards -->
+                                        </div>
+                                    </section>
+    
+                                    <section id="installation" class="mt-5">
+                                        <h2>Installation</h2>
+                                        <p>Get started with Advanced File Manager in your Laravel project.</p>
+                                        
+                                        <div class="code-block">
+                                            <div class="code-header">
+                                                <span>Terminal</span>
+                                                <button class="copy-btn" data-clipboard-target="#install-code">
+                                                    <svg width="16" height="16" fill="currentColor">
+                                                        <path d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V2z"/>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <pre><code id="install-code">composer require devrabiul/advanced-file-manager</code></pre>
+                                        </div>
+                                    </section>
+    
+                                    <!-- Documentation Navigation -->
+                                    <div class="doc-navigation">
+                                        <div class="nav-item-prev">
+                                            <a href="#previous-section" class="nav-control">
+                                                <span class="nav-label">
+                                                    <svg width="16" height="16" fill="none" stroke="currentColor">
+                                                        <path d="M15 8H3m0 0l6-6M3 8l6 6" stroke-width="2"/>
+                                                    </svg>
+                                                    Previous
+                                                </span>
+                                                <span class="nav-title">Installation Guide</span>
+                                            </a>
+                                        </div>
+                                        <div class="nav-item-next">
+                                            <a href="#next-section" class="nav-control">
+                                                <span class="nav-label">
+                                                    Next
+                                                    <svg width="16" height="16" fill="none" stroke="currentColor">
+                                                        <path d="M1 8h12m0 0l-6-6m6 6l-6 6" stroke-width="2"/>
+                                                    </svg>
+                                                </span>
+                                                <span class="nav-title">Basic Configuration</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                            <div class="col-lg-3 d-none d-lg-block">
+                                <div class="on-page-nav" id="onPageNav">
+                                    <h6 class="fw-semibold mb-3">On this page</h6>
+                                    <nav class="nav flex-column">
+                                        <!-- This will be populated dynamically -->
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="docs.js"></script>
+</body>
+</html> 
