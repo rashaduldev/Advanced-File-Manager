@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Modal from "react-modal";
 import fileImage from "../../public/advanced-file-manager.png";
+import Link from "next/link";
 
 // Hero Component
 export default function Hero() {
@@ -34,7 +35,8 @@ export default function Hero() {
               {/* Buttons */}
               <div className="mt-8 flex flex-wrap gap-4 justify-center lg:justify-start">
                 {/* Install Now Button */}
-                <button className="bg-blue-600 text-white px-12 py-3 rounded-full hover:bg-blue-700 transition-all flex items-center gap-2">
+               <Link href={'#installation'}>
+               <button className="bg-blue-600 text-white px-12 py-3 rounded-full hover:bg-blue-700 transition-all flex items-center gap-2 cursor-pointer">
                   <div className="flex flex-col">
                     <span className="text-sm opacity-90">READY TO START</span>
                     <span className="font-semibold">Install Now</span>
@@ -53,11 +55,12 @@ export default function Hero() {
                     />
                   </svg>
                 </button>
+               </Link>
 
                 {/* Watch Video Demo Button */}
                 <button
                   onClick={() => setIsOpen(true)}
-                  className="bg-red-600 text-white px-8 py-3 rounded-full hover:bg-red-700 transition-all flex items-center gap-2 relative"
+                  className="bg-red-600 text-white px-8 py-3 rounded-full hover:bg-red-700 transition-all flex items-center gap-2 relative cursor-pointer"
                 >
                   <svg
                     className="w-6 h-6"
@@ -85,19 +88,19 @@ export default function Hero() {
                 </button>
               </div>
             </div>
+          {/* Preview Window */}
+          <div className="mt-10 lg:mt-0 flex justify-center">
+  <div className="bg-gray-900 rounded-lg shadow-2xl p-4 transition-transform hover:scale-105 sm:-rotate-[10deg] lg:-rotate-[20deg] max-w-full">
+    <Image
+      height={300}
+      width={600}
+      src={fileImage}
+      alt="File Manager Preview"
+      className="rounded-md h-auto w-full max-w-[600px]"
+    />
+  </div>
+</div>
 
-            {/* Preview Window */}
-            <div className="mt-10 lg:mt-0">
-              <div className="bg-gray-900 rounded-lg shadow-2xl p-4 hover:scale-102 transition-transform">
-                <Image
-                  height={200}
-                  width={400}
-                  src={fileImage}
-                  alt="File Manager Preview"
-                  className="rounded-md h-auto"
-                />
-              </div>
-            </div>
           </div>
         </div>
       </section>

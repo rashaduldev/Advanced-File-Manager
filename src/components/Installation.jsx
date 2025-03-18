@@ -31,7 +31,7 @@ export default function Installation() {
   };
 
   return (
-    <section className="py-16 bg-gradient-to-b from-gray-50 to-white" id="installation">
+    <section className="py-16 bg-gradient-to-b bg-gray-50 from-gray-50 to-white" id="installation">
       <div className="container mx-auto px-4">
         <div className="text-center">
           <span className="bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-medium">
@@ -43,7 +43,7 @@ export default function Installation() {
 
         <div className="mt-12 max-w-3xl mx-auto">
           {steps.map((step) => (
-            <div key={step.id} className="bg-white p-6 rounded-lg shadow-md mb-6">
+            <div key={step.id} className="bg-white p-6 rounded-lg shadow-lg mb-6">
               <div className="flex justify-between">
               <div className="flex items-center gap-4">
                 <div className="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center">
